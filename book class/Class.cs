@@ -8,11 +8,13 @@ namespace book_class
     {
         private string title;
         private string author;
+        private string coauthor;
         private bool borrowed;
         private int pages;
         public static int numberofbooks = 0;
+        private DateTime duedate
 
-        public Book(string title, string author, int pages)
+        public Class(string title, string author, int pages)
         {
             this.title = title;
             this.author = author;
@@ -21,6 +23,23 @@ namespace book_class
             numberofbooks = numberofbooks + 1;
         }
 
+        public Class(string title, int pages)
+        {
+            this.title = title;
+            this.pages = pages;
+            this.borrowed = false;
+            numberofbooks = numberofbooks + 1;
+        }
+
+        public Class(string title, string author, string coauthor, int pages)
+        {
+            this.title = title;
+            this.author = author;
+            this.coauthor = coauthor;
+            this.pages = pages;
+            this.borrowed = false;
+            numberofbooks = numberofbooks + 1;
+        }
         public string Gettitle()
         {
             return title;
@@ -31,11 +50,31 @@ namespace book_class
             return author;
         }
 
+        public string Getauthors()
+        {
+            return author + " " + coauthor;
+        }
+
         public int Getpages()
         {
             return pages;
         }
 
+        public bool Isoverdue()
+        {
+            DateTime Today = DateTime.Now;
+            int overdue = DateTime.Compare(Today, duedate);
+
+
+            if (overdue == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         public bool Isborrowed()
         {
             return borrowed;
@@ -67,3 +106,4 @@ namespace book_class
             }
         }
     }
+}
